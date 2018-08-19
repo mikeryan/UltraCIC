@@ -1,5 +1,7 @@
 processor pic16f1613
 
+section code
+
 ; UltraCIC - Nintendo 64 CIC clone by Mike Ryan
 ; This code is released in the public domain
 
@@ -125,15 +127,15 @@ main_zero:
 main_zero_zero:
     movlw 0x20
     movwf FSR0
-    call main_algorithm
-    call main_algorithm
-    call main_algorithm
+    call cic_round
+    call cic_round
+    call cic_round
 
     movlw 0x30
     movwf FSR0
-    call main_algorithm
-    call main_algorithm
-    call main_algorithm
+    call cic_round
+    call cic_round
+    call cic_round
 
     ; W = RAM[17]
     ; if W < F
@@ -305,7 +307,7 @@ x105_loop:
     addwf INDF0, W
 
     ; adc emulation is gross
-    adc_no_carry_out
+    adc_nocarry_out
     btfsc STATUS, DC
     bsf 70, 0 ; set fake C if there was DC
 
@@ -528,18 +530,18 @@ cb MACRO byte
 
 ; checksum
 checksum MACRO va, vb, vc, vd, ve, vf, vg, vh, vi, vj, vk, vl
-    kb va
-    kb vb
-    kb vc
-    kb vd
-    kb ve
-    kb vf
-    kb vg
-    kb vh
-    kb vi
-    kb vj
-    kb vk
-    kb vl
+    cb va
+    cb vb
+    cb vc
+    cb vd
+    cb ve
+    cb vf
+    cb vg
+    cb vh
+    cb vi
+    cb vj
+    cb vk
+    cb vl
     ENDM
 
 load_checksum:
