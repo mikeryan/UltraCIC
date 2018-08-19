@@ -125,15 +125,15 @@ main_zero:
 main_zero_zero:
     movlw 0x20
     movwf FSR0
-    call main_algorithm
-    call main_algorithm
-    call main_algorithm
+    call cic_round
+    call cic_round
+    call cic_round
 
     movlw 0x30
     movwf FSR0
-    call main_algorithm
-    call main_algorithm
-    call main_algorithm
+    call cic_round
+    call cic_round
+    call cic_round
 
     ; W = RAM[17]
     ; if W < F
@@ -305,7 +305,7 @@ x105_loop:
     addwf INDF0, W
 
     ; adc emulation is gross
-    adc_no_carry_out
+    adc_nocarry_out
     btfsc STATUS, DC
     bsf 70, 0 ; set fake C if there was DC
 
