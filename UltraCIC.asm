@@ -1,5 +1,7 @@
 processor pic16f1613
 
+section code
+
 ; UltraCIC - Nintendo 64 CIC clone by Mike Ryan
 ; This code is released in the public domain
 
@@ -528,18 +530,18 @@ cb MACRO byte
 
 ; checksum
 checksum MACRO va, vb, vc, vd, ve, vf, vg, vh, vi, vj, vk, vl
-    kb va
-    kb vb
-    kb vc
-    kb vd
-    kb ve
-    kb vf
-    kb vg
-    kb vh
-    kb vi
-    kb vj
-    kb vk
-    kb vl
+    cb va
+    cb vb
+    cb vc
+    cb vd
+    cb ve
+    cb vf
+    cb vg
+    cb vh
+    cb vi
+    cb vj
+    cb vk
+    cb vl
     ENDM
 
 load_checksum:
